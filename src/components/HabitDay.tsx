@@ -22,7 +22,6 @@ export function HabitDay({ amount, completed }: HabitDayProps) {
           "bg-violet-600 border-violet-500": completedPercentage >= 60 && completedPercentage < 80,
           "bg-violet-500 border-violet-400": completedPercentage >= 80,
         })}
-
       />
 
       <Popover.Portal>
