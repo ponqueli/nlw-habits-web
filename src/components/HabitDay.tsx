@@ -1,6 +1,7 @@
 import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
 import { ProgressBar } from './ProgressBar';
+import { TaskList } from './TaskList';
 
 interface HabitDayProps {
   completed: number,
@@ -8,7 +9,6 @@ interface HabitDayProps {
 }
 
 export function HabitDay({ amount, completed }: HabitDayProps) {
-
   const completedPercentage = Math.round((completed / amount) * 100);
 
   return (
@@ -30,6 +30,10 @@ export function HabitDay({ amount, completed }: HabitDayProps) {
           <span className="mt-1 font-extrabold leading-tight text-3xl">07/02</span>
 
           <ProgressBar progress={completedPercentage} />
+
+          <div className="mt-6 flex flex-col gap-3">
+            <TaskList />
+          </div>
 
           <Popover.Arrow className="fill-zinc-900" height={8} width={16} />
         </Popover.Content>
