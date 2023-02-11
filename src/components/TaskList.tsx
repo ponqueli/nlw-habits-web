@@ -2,7 +2,7 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
 export function TaskList() {
   return (
-    <>
+    <div className="mt-6 flex flex-col gap-3">
       <Checkbox.Root
         className="flex items-center gap-3 group focus:outline-none disabled:cursor-not-allowed"
       >
@@ -32,6 +32,6 @@ export function TaskList() {
           Estudar React
         </span>
       </Checkbox.Root>
-    </>
+    </div>
   )
 }
