@@ -2,6 +2,7 @@ import { Plus, X } from 'phosphor-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import logoImage from '../assets/logo.svg';
 import { NewHabitForm } from './NewHabitForm';
+import { useState } from 'react';
 
 export function Header() {
   //forma Imperativa e forma Declarativa
@@ -12,11 +13,12 @@ export function Header() {
 
   //variaveis monitoradas pelo react. Cada vez que muda o valor, o react vai renderizar novamente o componente
 
+  const [open, setOpen] = useState(false);	
   return (
     <div className='w-full max-w-3xl mx-auto flex items-center justify-between'>
       <img src={logoImage} alt="logo habits" />
 
-      <Dialog.Root>
+      <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger
           type='button'
           className='flex items-center gap-3 border border-violet-500 font-semibold rounded-lg px-6 py-4 hover:border-violet-300'
@@ -35,7 +37,7 @@ export function Header() {
             <Dialog.Title className='text-3xl leading-tight font-extrabold'>
               Criar Hábito
             </Dialog.Title>
-            <NewHabitForm />
+            <NewHabitForm setOpen={setOpen} />
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>

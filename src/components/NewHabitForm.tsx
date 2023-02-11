@@ -1,6 +1,8 @@
 import { FormEvent, useState } from 'react'
 import { Check } from 'phosphor-react'
 import * as Checkbox from '@radix-ui/react-checkbox';
+import { toast } from 'react-toastify';
+import { api } from '../lib/axios';
 
 const availableWeekDays = [
   'Domingo',
@@ -12,12 +14,73 @@ const availableWeekDays = [
   'Sábado',
 ]
 
-export function NewHabitForm() {
+export function NewHabitForm({ setOpen }: any) {
   const [title, setTitle] = useState<string>('');
   const [weekDays, setWeekDays] = useState<number[]>([]);
 
-  function createNewHabit(event: FormEvent) {
+  const notify = (type: string, message: string) => {
+    if (type === 'warn') {
+      toast.warn(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else if (type === 'error') {
+      toast.error(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else if (type === 'success') {
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  }
+
+  function resetForm() {
+    setTitle('');
+    setWeekDays([]);
+  }
+
+  async function createNewHabit(event: FormEvent) {
     event.preventDefault();
+
+    if (!title || !weekDays.length) {
+      notify('warn', 'Preencha todos os campos!');
+      return;
+    };
+
+    const newHabit = {
+      title,
+      weekDays,
+    }
+
+    try {
+      await api.post('/habits', newHabit);
+      notify('success', 'Hábito criado com sucesso!');
+      resetForm();
+      setOpen(false);
+    } catch (error) {
+      notify('error', 'Erro ao criar hábito!');
+    }
   }
 
   function handleToggleWeekDay(weekDay: number) {
@@ -53,6 +116,7 @@ export function NewHabitForm() {
             <Checkbox.Root
               key={weekDay}
               className="flex items-center gap-3 group focus:outline-none"
+              checked={weekDays.includes(index)}
               onCheckedChange={() => handleToggleWeekDay(index)}
             >
               <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-50 transition-colors group-focus:ring-2 group-focus:ring-violet-600 group-focus:ring-offset-2 group-focus:ring-offset-background">
