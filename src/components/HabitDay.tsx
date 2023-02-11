@@ -4,12 +4,13 @@ import { ProgressBar } from './ProgressBar';
 import { TaskList } from './TaskList';
 
 interface HabitDayProps {
-  completed: number,
-  amount: number,
+  date: Date,
+  completed?: number,
+  amount?: number,
 }
 
-export function HabitDay({ amount, completed }: HabitDayProps) {
-  const completedPercentage = Math.round((completed / amount) * 100);
+export function HabitDay({ amount = 0, completed = 0 }: HabitDayProps) {
+  const completedPercentage = amount > 0 ? Math.round((completed / amount) * 100) : 0;
 
   return (
     <Popover.Root>
