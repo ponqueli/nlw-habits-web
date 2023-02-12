@@ -1,8 +1,8 @@
+import dayjs from 'dayjs';
 import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
 import { ProgressBar } from './ProgressBar';
-import { TaskList } from './TaskList';
-import dayjs from 'dayjs';
+import { HabitsList } from './HabitsList';
 
 interface HabitDayProps {
   date: Date,
@@ -34,8 +34,8 @@ export function HabitDay({ amount = 0, completed = 0, date }: HabitDayProps) {
 
           <ProgressBar progress={completedPercentage} />
 
-          <TaskList />
-        
+          <HabitsList date={date} />
+
           <Popover.Arrow className="fill-zinc-900" height={8} width={16} />
         </Popover.Content>
       </Popover.Portal>
