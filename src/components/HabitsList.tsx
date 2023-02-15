@@ -7,6 +7,7 @@ import { notify } from '../utils/notify-alert';
 
 interface HabitsListProps {
   date: Date,
+  onCompletedChange: (completed: number) => void,
 }
 
 interface HabitsInfo {
@@ -19,7 +20,7 @@ interface HabitsInfo {
   completedHabits: string[],
 }
 
-export function HabitsList({ date }: HabitsListProps) {
+export function HabitsList({ date, onCompletedChange }: HabitsListProps) {
   const [habitsInfo, setHabitsInfo] = useState<HabitsInfo>();
   useEffect(() => {
     api.get('/day', {
@@ -55,6 +56,8 @@ export function HabitsList({ date }: HabitsListProps) {
       possibleHabits: habitsInfo!.possibleHabits,
       completedHabits: newCompletedHabits,
     });
+
+    onCompletedChange(newCompletedHabits.length);
   }
 
   return (
