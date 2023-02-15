@@ -1,8 +1,8 @@
 import { FormEvent, useState } from 'react'
 import { Check } from 'phosphor-react'
 import * as Checkbox from '@radix-ui/react-checkbox';
-import { toast } from 'react-toastify';
 import { api } from '../lib/axios';
+import { notify } from '../utils/notify-alert';
 
 const availableWeekDays = [
   'Domingo',
@@ -17,43 +17,6 @@ const availableWeekDays = [
 export function NewHabitForm({ setOpen }: any) {
   const [title, setTitle] = useState<string>('');
   const [weekDays, setWeekDays] = useState<number[]>([]);
-
-  const notify = (type: string, message: string) => {
-    if (type === 'warn') {
-      toast.warn(message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else if (type === 'error') {
-      toast.error(message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else if (type === 'success') {
-      toast.success(message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    }
-  }
 
   function resetForm() {
     setTitle('');
