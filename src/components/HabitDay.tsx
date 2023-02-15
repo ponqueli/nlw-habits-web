@@ -24,6 +24,7 @@ export function HabitDay({ amount = 0, completed = 0, date }: HabitDayProps) {
           "bg-violet-700 border-violet-500": completedPercentage >= 40 && completedPercentage < 60,
           "bg-violet-600 border-violet-500": completedPercentage >= 60 && completedPercentage < 80,
           "bg-violet-500 border-violet-400": completedPercentage >= 80,
+          "border-zinc-400 ": dayjs(date).isSame(dayjs(), 'day'),
         })}
       />
 
