@@ -21,11 +21,11 @@ export function Header() {
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger
           type='button'
-          className='flex items-center gap-3 border border-violet-500 font-semibold rounded-lg px-6 py-4 hover:border-violet-300 transition-all duration-200'
+          className='flex items-center gap-3 border border-violet-500 font-semibold rounded-lg px-6 py-4 hover:border-violet-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-violet-700 focus:ring-offset-2 focus:ring-offset-background'
         >
           <Plus size={20} className='text-violet-500' />
           Novo Hábito
-        </Dialog.Trigger>
+        </Dialog.Trigger> 
 
         <Dialog.Portal>
           <Dialog.Overlay className='w-screen h-screen bg-black/80 fixed inset-0' />
