@@ -21,7 +21,7 @@ export function Header() {
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger
           type='button'
-          className='flex items-center gap-3 border border-violet-500 font-semibold rounded-lg px-6 py-4 hover:border-violet-300'
+          className='flex items-center gap-3 border border-violet-500 font-semibold rounded-lg px-6 py-4 hover:border-violet-300 transition-all duration-200'
         >
           <Plus size={20} className='text-violet-500' />
           Novo Hábito
